@@ -13,11 +13,12 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.amberAccent,
         body: Center(
             child: ClothButton(
-          height: 100,
-          width: 400,
+              expandFactor: 20,
+              backgroundColor: Colors.amber,
+              height: 100,
+              width: 400,
         )),
       ),
     );

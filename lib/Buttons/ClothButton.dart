@@ -6,6 +6,7 @@ class ClothButton extends StatefulWidget {
   final Widget child;
   final double height;
   final double width;
+  final Color backgroundColor;
   final double expandFactor;
 
   ClothButton(
@@ -13,6 +14,7 @@ class ClothButton extends StatefulWidget {
       @required this.height,
       @required this.width,
       this.child,
+        @required this.backgroundColor,
       this.expandFactor = 10.0})
       : super(key: key) {
     assert(expandFactor > 1.0 || expandFactor < 50.0);
@@ -58,7 +60,8 @@ class _ClothButtonState extends State<ClothButton>
         onEnter: onEnter,
         child: Center(
           child: CustomPaint(
-            painter: ClothCustomPainter(position, animation.value.toInt()),
+            painter: ClothCustomPainter(
+                position, animation.value.toInt(), widget.backgroundColor),
             child: Center(child: widget.child),
           ),
         ),
