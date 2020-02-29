@@ -14,11 +14,29 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-            child: ClothButton(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                RoundClothButton(
+                  expandFactor: 20,
+                  backgroundColor: Colors.amber,
+                  height: 100,
+                  width: 500,
+                ),
+                ClothButton(
               expandFactor: 20,
               backgroundColor: Colors.amber,
               height: 100,
-              width: 400,
+                  width: 500,
+                ),
+                LiquidButton(
+                  expandFactor: 20,
+                  backgroundColor: Colors.amber,
+                  height: 100,
+                  width: 500,
+                ),
+              ],
         )),
       ),
     );
