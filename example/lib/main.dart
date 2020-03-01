@@ -22,13 +22,14 @@ class _MyAppState extends State<MyApp> {
                   expandFactor: 20,
                   backgroundColor: Colors.black87,
                   gradientColor: Colors.black54,
+                  retainGradient: true,
                   height: 100,
                   width: 400,
                   child: Text(
                     "Round Cloth Button",
                     style: TextStyle(
                         fontSize: 30,
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -41,7 +42,7 @@ class _MyAppState extends State<MyApp> {
                     "Cloth Button",
                     style: TextStyle(
                         fontSize: 30,
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
                   width: 400,
@@ -54,7 +55,7 @@ class _MyAppState extends State<MyApp> {
                     "Liquid Button",
                     style: TextStyle(
                         fontSize: 30,
-                        color: Colors.black,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
                   gradientColor: Colors.black54,

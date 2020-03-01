@@ -56,7 +56,8 @@ class ClothCustomPainter extends CustomPainter {
 
     Path path = Path();
 
-    path.moveTo(points[0].dx, points[0].dy);
+    var tempP = attractedPoint(points[0]);
+    path.moveTo(tempP.dx, tempP.dy);
     points.forEach((element) {
       Offset anotherPoint = attractedPoint(element);
       path.lineTo(anotherPoint.dx, anotherPoint.dy);
