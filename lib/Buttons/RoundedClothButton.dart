@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:liquid_button/CustomThings/RoundClothCustomPainter.dart';
 
@@ -59,14 +60,14 @@ class _ClothButtonState extends State<RoundClothButton>
   @override
   Widget build(BuildContext context) {
     renderBox = context.findRenderObject();
-    return SizedBox(
-      height: widget.height,
-      width: widget.width,
-      child: MouseRegion(
-        onHover: onHover,
-        onExit: onExit,
-        onEnter: onEnter,
-        child: Center(
+    if (!kIsWeb)
+      return GestureDetector(
+        onPanUpdate: onHoverM,
+        onPanDown: (de) => onEnter(null),
+        onPanEnd: (de) => onExit(null),
+        child: SizedBox(
+          height: widget.height,
+          width: widget.width,
           child: CustomPaint(
             painter: RoundClothCustomPainter(
                 gap: widget.gap,
@@ -79,6 +80,26 @@ class _ClothButtonState extends State<RoundClothButton>
             child: Center(child: widget.child),
           ),
         ),
+      );
+    else
+      return MouseRegion(
+        onHover: onHover,
+        onExit: onExit,
+        onEnter: onEnter,
+        child: SizedBox(
+          height: widget.height,
+          width: widget.width,
+          child: CustomPaint(
+            painter: RoundClothCustomPainter(
+                gap: widget.gap,
+                relativePosition: position,
+                expandFactor: animation.value,
+                backgroundColor: widget.backgroundColor,
+                maxExpand: widget.expandFactor,
+                retainGradient: widget.retainGradient,
+                gradientColor: widget.gradientColor ?? widget.backgroundColor),
+            child: Center(child: widget.child),
+        ),
       ),
     );
   }
@@ -86,6 +107,12 @@ class _ClothButtonState extends State<RoundClothButton>
   void onHover(PointerHoverEvent event) {
     setState(() {
       position = renderBox.globalToLocal(event.position);
+    });
+  }
+
+  void onHoverM(DragUpdateDetails event) {
+    setState(() {
+      position = (event.localPosition);
     });
   }
 

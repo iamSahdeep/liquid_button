@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart';
 import 'package:liquid_button/CustomThings/LiquidButtonCustomPainter.dart';
 
 class LiquidButton extends StatefulWidget {
@@ -43,11 +45,10 @@ class _LiquidButtonState extends State<LiquidButton>
 
   @override
   void initState() {
-    animationController = new AnimationController(
-        duration: widget.duration, vsync: this);
-    animation =
-    new Tween<double>(begin: 1.0, end: widget.expandFactor).animate(
-        animationController)
+    animationController =
+    new AnimationController(duration: widget.duration, vsync: this);
+    animation = new Tween<double>(begin: 1.0, end: widget.expandFactor)
+        .animate(animationController)
       ..addListener(() {
         setState(() {});
       });
@@ -62,32 +63,62 @@ class _LiquidButtonState extends State<LiquidButton>
   @override
   Widget build(BuildContext context) {
     renderBox = context.findRenderObject();
-    return MouseRegion(
-      onHover: onHover,
-      onExit: onExit,
-      onEnter: onEnter,
-      child: SizedBox(
-        width: widget.width,
-        height: widget.height,
-        child: CustomPaint(
-          painter: LiquidButtonCustomPainter(
-              canvasColor: widget.backgroundColor,
-              gap: widget.gap,
-              retainGradient: widget.retainGradient,
-              tension: widget.tension,
-              gradientColor: widget.gradientColor ?? widget.backgroundColor,
-              position: position,
-              maxExpansion: widget.expandFactor,
-              expandFactor: animation.value),
-          child: Center(child: widget.child),
+
+    if (!kIsWeb)
+      return GestureDetector(
+        onPanUpdate: onHoverM,
+        onPanDown: (de) => onEnter(null),
+        onPanEnd: (de) => onExit(null),
+        child: SizedBox(
+          width: widget.width,
+          height: widget.height,
+          child: CustomPaint(
+            painter: LiquidButtonCustomPainter(
+                canvasColor: widget.backgroundColor,
+                gap: widget.gap,
+                retainGradient: widget.retainGradient,
+                tension: widget.tension,
+                gradientColor: widget.gradientColor ?? widget.backgroundColor,
+                position: position,
+                maxExpansion: widget.expandFactor,
+                expandFactor: animation.value),
+            child: Center(child: widget.child),
+          ),
         ),
-      ),
-    );
+      );
+    else
+      return MouseRegion(
+        onHover: onHover,
+        onExit: onExit,
+        onEnter: onEnter,
+        child: SizedBox(
+          width: widget.width,
+          height: widget.height,
+          child: CustomPaint(
+            painter: LiquidButtonCustomPainter(
+                canvasColor: widget.backgroundColor,
+                gap: widget.gap,
+                retainGradient: widget.retainGradient,
+                tension: widget.tension,
+                gradientColor: widget.gradientColor ?? widget.backgroundColor,
+                position: position,
+                maxExpansion: widget.expandFactor,
+                expandFactor: animation.value),
+            child: Center(child: widget.child),
+          ),
+        ),
+      );
   }
 
   void onHover(PointerHoverEvent event) {
     setState(() {
       position = renderBox.globalToLocal(event.localPosition);
+    });
+  }
+
+  void onHoverM(DragUpdateDetails event) {
+    setState(() {
+      position = (event.localPosition);
     });
   }
 

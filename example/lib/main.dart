@@ -50,16 +50,16 @@ class _MyAppState extends State<MyApp> {
                 LiquidButton(
                   expandFactor: 20,
                   backgroundColor: Colors.amber,
-                  height: 100,
+                  height: 50,
                   child: Text(
                     "Liquid Button",
                     style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
                   gradientColor: Colors.blueAccent,
-                  width: 500,
+                  width: 200,
                 ),
               ],
             )),

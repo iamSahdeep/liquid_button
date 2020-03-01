@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:liquid_button/CustomThings/ClothCustomPainter.dart';
 
@@ -57,14 +58,15 @@ class _ClothButtonState extends State<ClothButton>
   @override
   Widget build(BuildContext context) {
     renderBox = context.findRenderObject();
-    return SizedBox(
-      height: widget.height,
-      width: widget.width,
-      child: MouseRegion(
-        onHover: onHover,
-        onExit: onExit,
-        onEnter: onEnter,
-        child: Center(
+
+    if (!kIsWeb)
+      return GestureDetector(
+        onPanUpdate: onHoverM,
+        onPanDown: (de) => onEnter(null),
+        onPanEnd: (de) => onExit(null),
+        child: SizedBox(
+          height: widget.height,
+          width: widget.width,
           child: CustomPaint(
             painter: ClothCustomPainter(
                 relativePosition: position,
@@ -76,13 +78,38 @@ class _ClothButtonState extends State<ClothButton>
             child: Center(child: widget.child),
           ),
         ),
-      ),
-    );
+      );
+    else
+      return MouseRegion(
+        onHover: onHover,
+        onExit: onExit,
+        onEnter: onEnter,
+        child: SizedBox(
+          height: widget.height,
+          width: widget.width,
+          child: CustomPaint(
+            painter: ClothCustomPainter(
+                relativePosition: position,
+                expandFactor: animation.value,
+                backgroundColor: widget.backgroundColor,
+                maxExpand: widget.expandFactor,
+                retainGradient: widget.retainGradient,
+                gradientColor: widget.gradientColor ?? widget.backgroundColor),
+            child: Center(child: widget.child),
+          ),
+        ),
+      );
   }
 
   void onHover(PointerHoverEvent event) {
     setState(() {
       position = renderBox.globalToLocal(event.position);
+    });
+  }
+
+  void onHoverM(DragUpdateDetails event) {
+    setState(() {
+      position = (event.localPosition);
     });
   }
 
