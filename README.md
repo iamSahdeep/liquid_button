@@ -45,10 +45,10 @@ Experience Live Demo on :
 * Import it in your file
 
   ```
-  import 'package:liquid_swipe/liquid_swipe.dart';
+  import 'package:liquid_button/liquid_button.dart';
   ```
 
 ## Author & support
-This project is created by [Sahdeep Singh](https://github.com/iamSahdeep) but with lots of support and help. See the [Credits](https://github.com/iamSahdeep/liquid_swipe_flutter/blob/master/README.md#credits).
+This project is created by [Sahdeep Singh](https://github.com/iamSahdeep) but with lots of support and help.
 
 <img src="https://cdn-images-1.medium.com/max/1200/1*2yFbiGdcACiuLGo4dMKmJw.jpeg" width="90" height="35">
