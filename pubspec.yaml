@@ -1,7 +1,6 @@
 name: liquid_button
-description: A Flutter plugin of Liquified Buttons.
-version: 0.0.1
-author: sahdeepsingh98@gmail.com
+description: A Flutter plugin of Liquified Buttons. Inpired by liquid button on javascript.
+version: 1.0.0
 homepage: https://github.com/iamSahdeep/liquid_button
 
 environment:

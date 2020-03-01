@@ -34,7 +34,7 @@ Experience Live Demo on (not on mobile) : https://iamsahdeep.github.io/liquid_bu
 * Add this to your pubspec.yaml
   ```
   dependencies:
-  liquid_button: 0.0.1
+  liquid_button: 1.0.0
 
   ```
 * Get the package from Pub:

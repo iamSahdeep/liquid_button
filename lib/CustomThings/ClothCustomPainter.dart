@@ -31,26 +31,22 @@ class ClothCustomPainter extends CustomPainter {
     var leftBottom = [expandFactor, size.height - expandFactor];
 
     List<int>.generate(buttonWidth, (index) {
-      points
-          .add(Offset((leftTop[0] + index) as double, (leftTop[1]) as double));
+      points.add(Offset((leftTop[0] + index), (leftTop[1])));
       return index;
     });
 
     List<int>.generate(buttonHeight, (index) {
-      points.add(
-          Offset((rightTop[0]) as double, (rightTop[1] + index) as double));
+      points.add(Offset((rightTop[0]), (rightTop[1] + index)));
       return index;
     });
 
     List<int>.generate(buttonWidth, (index) {
-      points.add(Offset(
-          (rightBottom[0] - index) as double, (rightBottom[1]) as double));
+      points.add(Offset((rightBottom[0] - index), (rightBottom[1])));
       return index;
     });
 
     List<int>.generate(buttonHeight, (index) {
-      points.add(
-          Offset((leftBottom[0]) as double, (leftBottom[1] - index) as double));
+      points.add(Offset((leftBottom[0]), (leftBottom[1] - index)));
       return index;
     });
 

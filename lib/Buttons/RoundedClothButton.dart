@@ -99,9 +99,9 @@ class _ClothButtonState extends State<RoundClothButton>
                 retainGradient: widget.retainGradient,
                 gradientColor: widget.gradientColor ?? widget.backgroundColor),
             child: Center(child: widget.child),
+          ),
         ),
-      ),
-    );
+      );
   }
 
   void onHover(PointerHoverEvent event) {
