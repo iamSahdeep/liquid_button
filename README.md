@@ -14,16 +14,11 @@
   Hi, introducing Liquid Button for Flutter. It supports Web and Mobile, not tested on Ios. Inspired by <a href="https://codepen.io/electerious/pen/gOOLgjd">Liquid Button in JS</a>
 </p>
 
-## Mobile
+## Preview
 <p align="center">
-<img src="https://github.com/iamSahdeep/liquid_swipe_flutter/blob/master/assets/exampleMobile.gif" width="360" height="640">
+<img src="https://github.com/iamSahdeep/liquid_button/blob/master/Assets/exampleMobile.gif" width="360" height="640">
 </p>
 
-
-## Web
-<p align="center">
-<img src="https://github.com/iamSahdeep/liquid_swipe_flutter/blob/master/assets/exampleWeb.gif" width="640" height="400">
-</p>
 
 ## Live Demo
 
