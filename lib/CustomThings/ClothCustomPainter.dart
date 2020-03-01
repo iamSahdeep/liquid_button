@@ -5,18 +5,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ClothCustomPainter extends CustomPainter {
-  int expandFactor;
+  final double expandFactor;
+  final double maxExpand;
   List<Offset> points = [];
-  Offset relativePosition;
-  Color backgroundColor;
+  final Offset relativePosition;
+  final Color backgroundColor;
+  final Color gradientColor;
+  final bool retainGradient;
 
-  ClothCustomPainter(this.relativePosition, this.expandFactor,
-      this.backgroundColor);
+  ClothCustomPainter({this.maxExpand,
+    this.expandFactor,
+    this.relativePosition,
+    this.backgroundColor,
+    this.gradientColor,
+    this.retainGradient});
 
   @override
   void paint(Canvas canvas, Size size) {
-    int buttonWidth = (size.width - expandFactor * 2) as int;
-    int buttonHeight = (size.height - expandFactor * 2) as int;
+    int buttonWidth = (size.width - expandFactor * 2).toInt();
+    int buttonHeight = (size.height - expandFactor * 2).toInt();
 
     var leftTop = [expandFactor, expandFactor];
     var rightTop = [size.width - expandFactor, expandFactor];
@@ -55,8 +62,18 @@ class ClothCustomPainter extends CustomPainter {
       path.lineTo(anotherPoint.dx, anotherPoint.dy);
     });
 
+    var gradient = RadialGradient(
+        radius: size.width / size.height,
+        colors: [
+          retainGradient
+              ? gradientColor
+              : expandFactor == maxExpand ? backgroundColor : gradientColor,
+          backgroundColor
+        ],
+        center: Alignment.center);
     final paint = Paint();
-    paint.color = backgroundColor;
+    paint.shader = gradient.createShader(Rect.fromCenter(
+        center: relativePosition, height: size.height, width: size.width));
     canvas.drawPath(path, paint);
   }
 

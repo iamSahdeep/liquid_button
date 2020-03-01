@@ -7,15 +7,21 @@ class ClothButton extends StatefulWidget {
   final double height;
   final double width;
   final Color backgroundColor;
+  final Color gradientColor;
+  final bool retainGradient;
+  final Duration duration;
   final double expandFactor;
 
   ClothButton(
       {Key key,
       @required this.height,
       @required this.width,
+        this.duration = const Duration(milliseconds: 500),
       this.child,
         @required this.backgroundColor,
-      this.expandFactor = 10.0})
+        this.expandFactor = 10.0,
+        this.gradientColor,
+        this.retainGradient = false})
       : super(key: key) {
     assert(expandFactor > 1.0 || expandFactor < 50.0);
   }
@@ -33,8 +39,8 @@ class _ClothButtonState extends State<ClothButton>
   @override
   void initState() {
     position = Offset(widget.width / 2, widget.height / 2);
-    animationController = new AnimationController(
-        duration: Duration(milliseconds: 500), vsync: this);
+    animationController =
+    new AnimationController(duration: widget.duration, vsync: this);
     animation = new Tween<double>(begin: 1.0, end: widget.expandFactor)
         .animate(animationController)
           ..addListener(() {
@@ -61,7 +67,12 @@ class _ClothButtonState extends State<ClothButton>
         child: Center(
           child: CustomPaint(
             painter: ClothCustomPainter(
-                position, animation.value.toInt(), widget.backgroundColor),
+                relativePosition: position,
+                expandFactor: animation.value,
+                backgroundColor: widget.backgroundColor,
+                maxExpand: widget.expandFactor,
+                retainGradient: widget.retainGradient,
+                gradientColor: widget.gradientColor ?? widget.backgroundColor),
             child: Center(child: widget.child),
           ),
         ),

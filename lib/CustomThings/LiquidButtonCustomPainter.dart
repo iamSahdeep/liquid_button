@@ -34,7 +34,7 @@ class LiquidButtonCustomPainter extends CustomPainter {
         alpha -= this.gap) {
       var angle = (Math.pi / doubleTilde(size.height * 1.25)) * alpha;
       points.add(Offset(
-          Math.sin(angle) * size.height / 2 + 0 + size.width - size.height / 2,
+          Math.sin(angle) * size.height / 2 + size.width - size.height / 2,
           Math.cos(angle) * size.height / 2 + size.height / 2));
     }
     for (var x = size.width - doubleTilde(size.height / 2) - 1;

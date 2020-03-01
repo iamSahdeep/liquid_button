@@ -7,13 +7,21 @@ class RoundClothButton extends StatefulWidget {
   final double height;
   final double width;
   final Color backgroundColor;
+  final Color gradientColor;
+  final Duration duration;
   final double expandFactor;
+  final bool retainGradient;
+  final int gap;
 
   RoundClothButton(
       {Key key,
       @required this.height,
       @required this.width,
       this.child,
+        this.retainGradient = false,
+        this.gap = 1,
+        this.duration = const Duration(milliseconds: 500),
+        this.gradientColor,
       @required this.backgroundColor,
       this.expandFactor = 10.0})
       : super(key: key) {
@@ -33,8 +41,8 @@ class _ClothButtonState extends State<RoundClothButton>
   @override
   void initState() {
     position = Offset(widget.width / 2, widget.height / 2);
-    animationController = new AnimationController(
-        duration: Duration(milliseconds: 500), vsync: this);
+    animationController =
+    new AnimationController(duration: widget.duration, vsync: this);
     animation = new Tween<double>(begin: 1.0, end: widget.expandFactor)
         .animate(animationController)
           ..addListener(() {
@@ -61,7 +69,13 @@ class _ClothButtonState extends State<RoundClothButton>
         child: Center(
           child: CustomPaint(
             painter: RoundClothCustomPainter(
-                position, animation.value.toInt(), widget.backgroundColor),
+                gap: widget.gap,
+                relativePosition: position,
+                expandFactor: animation.value,
+                backgroundColor: widget.backgroundColor,
+                maxExpand: widget.expandFactor,
+                retainGradient: widget.retainGradient,
+                gradientColor: widget.gradientColor ?? widget.backgroundColor),
             child: Center(child: widget.child),
           ),
         ),

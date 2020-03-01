@@ -9,6 +9,7 @@ class LiquidButton extends StatefulWidget {
   final Color backgroundColor;
   final Color gradientColor;
   final int gap;
+  final Duration duration;
   final bool retainGradient;
   final double tension;
   final double expandFactor;
@@ -19,6 +20,7 @@ class LiquidButton extends StatefulWidget {
     @required this.backgroundColor,
     this.gradientColor,
     this.gap = 1,
+    this.duration = const Duration(milliseconds: 500),
     this.retainGradient = false,
     this.tension = 0.04,
     this.expandFactor = 10,
@@ -42,7 +44,7 @@ class _LiquidButtonState extends State<LiquidButton>
   @override
   void initState() {
     animationController = new AnimationController(
-        duration: Duration(milliseconds: 500), vsync: this);
+        duration: widget.duration, vsync: this);
     animation =
     new Tween<double>(begin: 1.0, end: widget.expandFactor).animate(
         animationController)

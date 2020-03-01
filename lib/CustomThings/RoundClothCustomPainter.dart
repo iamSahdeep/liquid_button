@@ -5,15 +5,23 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RoundClothCustomPainter extends CustomPainter {
-  int expandFactor;
+  final double expandFactor;
+  final double maxExpand;
   List<Offset> points = [];
-  Offset relativePosition;
-  Color backgroundColor;
-  double margin = 5;
-  int gap = 2;
+  final Offset relativePosition;
+  final Color backgroundColor;
+  final double margin = 5;
+  final int gap;
+  final Color gradientColor;
+  final bool retainGradient;
 
-  RoundClothCustomPainter(
-      this.relativePosition, this.expandFactor, this.backgroundColor);
+  RoundClothCustomPainter({@required this.maxExpand,
+    @required this.expandFactor,
+    @required this.relativePosition,
+    @required this.backgroundColor,
+    @required this.gap,
+    @required this.gradientColor,
+    @required this.retainGradient});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -57,8 +65,18 @@ class RoundClothCustomPainter extends CustomPainter {
       path.lineTo(anotherPoint.dx, anotherPoint.dy);
     });
 
+    var gradient = RadialGradient(
+        radius: size.width / size.height,
+        colors: [
+          retainGradient
+              ? gradientColor
+              : expandFactor == maxExpand ? backgroundColor : gradientColor,
+          backgroundColor
+        ],
+        center: Alignment.center);
     final paint = Paint();
-    paint.color = backgroundColor;
+    paint.shader = gradient.createShader(Rect.fromCenter(
+        center: relativePosition, height: size.height, width: size.width));
     canvas.drawPath(path, paint);
   }
 
