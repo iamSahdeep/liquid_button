@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  Hi, introducing Liquid Button for Flutter. It supports Web and Mobile, not tested on Ios. Inspired by <a href="https://codepen.io/electerious/pen/gOOLgjd">Liquid Button in JS</a>.
+  Hi, Introducing Liquid Button for Flutter. It supports Web and Mobile, not tested on Ios. Inspired by <a href="https://codepen.io/electerious/pen/gOOLgjd">Liquid Button in JS</a>.
 </p>
 
 ## Preview
@@ -34,7 +34,7 @@ Experience Live Demo on (not on mobile) : https://iamsahdeep.github.io/liquid_bu
 * Add this to your pubspec.yaml
   ```
   dependencies:
-  liquid_button: 1.0.0
+  liquid_button: 0.0.1
 
   ```
 * Get the package from Pub:
@@ -49,9 +49,8 @@ Experience Live Demo on (not on mobile) : https://iamsahdeep.github.io/liquid_bu
   ```
 
 # Example
-
-    - Look for complete example in [example](https://github.com/iamSahdeep/liquid_button/blob/master/example) folder.
-    - Remember to wrap it with GestureDetector or InkWell, might include in next version.
+- Look for complete example in [example](https://github.com/iamSahdeep/liquid_button/blob/master/example) folder.
+- Remember to wrap it with GestureDetector or InkWell, might include in next version.
 
 ```
                 LiquidButton(
@@ -71,21 +70,29 @@ Experience Live Demo on (not on mobile) : https://iamsahdeep.github.io/liquid_bu
 ```
 
 ## Attributes
+Currently we have 3 buttons : RoundClothButton(poor naming :p), ClothButton and LiquidButton.
 Here are some of the attributes in which height,width and background color is the required. Rest can be left to have default values.
-    - **expandFactor** : (double) Allows you to decide Expansion of the button while animating. Should be less than 50.
-    - **backgroundColor** : (Color) Color of the button.
-    - **gradientColor** : (Color) If you want gradient effect onHover, if not given no color effect will be there.
-    - **retainGradient** : (bool) If you want to retain the gradient effect when mouse leaves the button area. Default is false.
-    - **gap** : (int) Integer to provide gap between subsequent point while painting the line. Do experiment with it, Should not be greater that height/2.
+* **expandFactor** : (double) Allows you to decide Expansion of the button while animating. Should be less than 50.
+* **backgroundColor** : (Color) Color of the button.
+* **gradientColor** : (Color) If you want gradient effect onHover, if not given no color effect will be there.
+* **retainGradient** : (bool) If you want to retain the gradient effect when mouse leaves the button area. Default is false.
+* **gap** : (int) Integer to provide gap between subsequent point while painting the line. Do experiment with it, Should not be greater that height/2.
 
 # Known Issues
 
-    * **Lag on Web** - It generally happens when we are using multiple Liquid Buttons on same screen due to usage of `MouseRegion`.You might experience the same on the live demo also. Check this issue https://github.com/flutter/flutter/issues/41194
-    * **Gesture not working on Web on Mobile** - Need to work on it..
-    * **Note** : Please report any kind of bugs you are experiencing.
+   * **Lag on Web** - It generally happens when we are using multiple Liquid Buttons on same screen due to usage of `MouseRegion`.You might experience the same on the live demo also. Check this issue https://github.com/flutter/flutter/issues/41194
+   * **Gesture not working on Web on Mobile** - Need to work on it..
+   * **Note** : Please report any kind of bugs you are experiencing.
 
 
 ## Author & support
 This project is created by [Sahdeep Singh](https://github.com/iamSahdeep) but with lots of support and help.
+> If you appreciate my work, consider buying me a cup of :coffee: to keep me recharged :metal:
+>  + [PayPal](https://www.paypal.me/sahdeep)
+> 
+> Or you can also endorse me on [LinkedIn](https://www.linkedin.com/in/iamsahdeep/) to keep me motivated.
+> 
+> I love my work and I'm available for freelance work. Contact me on my email: sahdeepsingh98@gmail.com
+
 
 <img src="https://cdn-images-1.medium.com/max/1200/1*2yFbiGdcACiuLGo4dMKmJw.jpeg" width="90" height="35">
