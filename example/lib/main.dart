@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
                   backgroundColor: Colors.black87,
                   gradientColor: Colors.black54,
                   height: 100,
-                  width: 500,
+                  width: 400,
                   child: Text(
                     "Round Cloth Button",
                     style: TextStyle(
@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
                         color: Colors.black,
                         fontWeight: FontWeight.bold),
                   ),
-                  width: 500,
+                  width: 400,
                 ),
                 LiquidButton(
                   expandFactor: 20,
@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
                         fontWeight: FontWeight.bold),
                   ),
                   gradientColor: Colors.black54,
-                  width: 500,
+                  width: 400,
                 ),
               ],
             )),
